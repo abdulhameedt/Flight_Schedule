@@ -33,10 +33,7 @@ class Flights
 
         try
         {
-            var orderpath = @"D:/JSONDATA/Flight-schedule.json";
-            if (!File.Exists(orderpath)) return;
-
-            using StreamReader reader = new StreamReader(orderpath);
+            using StreamReader reader = new StreamReader(@"/JSONDATA/Flight-schedule.json");
             var json = reader.ReadToEnd();
 
             //JSON Parse
@@ -83,10 +80,8 @@ class Flights
             var flightOrigin = "";
             var flightDest = "" ;
             var flightDay = "";
-            var orderdataJson = @"D:/JSONDATA/Orders.json";
-            if (!File.Exists(orderdataJson)) return;
-
-            using StreamReader reader = new StreamReader(orderdataJson);
+           
+            using StreamReader reader = new StreamReader(@"/JSONDATA/Orders.json");
             var json = reader.ReadToEnd();
             //Console.WriteLine(json);
             OrderData[] orderData = JsonConvert.DeserializeObject<OrderData[]>(json);
