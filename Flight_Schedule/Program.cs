@@ -33,7 +33,15 @@ class Flights
 
         try
         {
-            using StreamReader reader = new StreamReader(@"/JSONDATA/Flight-schedule.json");
+            string dir = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
+            string datapath = dir + "/JSONDATA/Flight-schedule.json";
+
+            if (!File.Exists(datapath))
+            {
+                Console.WriteLine("file does not found!");
+                return;
+            }
+            using StreamReader reader = new StreamReader(datapath);
             var json = reader.ReadToEnd();
 
             //JSON Parse
@@ -81,7 +89,16 @@ class Flights
             var flightDest = "" ;
             var flightDay = "";
            
-            using StreamReader reader = new StreamReader(@"/JSONDATA/Orders.json");
+           string dir = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
+            string datapath = dir + "/JSONDATA/Orders.json";
+            
+            if (!File.Exists(datapath))
+            {
+                Console.WriteLine("file does not found!");
+                return;
+            }
+
+            using StreamReader reader = new StreamReader(datapath);
             var json = reader.ReadToEnd();
             //Console.WriteLine(json);
             OrderData[] orderData = JsonConvert.DeserializeObject<OrderData[]>(json);
